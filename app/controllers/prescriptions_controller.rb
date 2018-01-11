@@ -10,9 +10,9 @@ class PrescriptionsController < ApplicationController
 
   def create 
     prescription = Prescription.new(
-      number: params[:number],
-      dosage: params[:dosage],
-      regimen: params[:regimen],
+      number: params[:inputNumber],
+      dosage: params[:inputDosage],
+      regimen: params[:inputRegimen],
       medication_id: 1,  #params["id"]
       user_id: current_user.id,
       obsolete: false
@@ -24,37 +24,37 @@ class PrescriptionsController < ApplicationController
     end
   end 
 
-  def show 
-    prescription_id = params["id"]
-    prescription = Prescription.find_by(id: prescription_id)
-    render json: prescription.as_json
-  end  
+  # def show 
+  #   prescription_id = params["id"]
+  #   prescription = Prescription.find_by(id: prescription_id)
+  #   render json: prescription.as_json
+  # end  
 
-  def update
-    if current_user #&& current_user.admin
-      prescription_id = params["id"]
-      prescription = Prescription.find_by(id: prescription_id)
-      prescription.number = params["input_number"] || prescription.number
-      prescription.dosage = params["dosage"] || prescription.dosage
-      prescription.regimen = params["regimen"] || prescription.regimen
-      if prescription.save
-        render json: prescription.as_json
-      else
-        render json: {errors: prescription.errors.full_messages}, status: :bad_request
-      end
+  # def update
+  #   if current_user #&& current_user.admin
+  #     prescription_id = params["id"]
+  #     prescription = Prescription.find_by(id: prescription_id)
+  #     prescription.number = params["input_number"] || prescription.number
+  #     prescription.dosage = params["dosage"] || prescription.dosage
+  #     prescription.regimen = params["regimen"] || prescription.regimen
+  #     if prescription.save
+  #       render json: prescription.as_json
+  #     else
+  #       render json: {errors: prescription.errors.full_messages}, status: :bad_request
+  #     end
     # else
     #   render json: {errors: "Not Authorized"}, status: unauthorized
-    end
-  end 
+  #   end
+  # end 
 
-  def destroy
-    if current_user #&&current_user.admin
-      prescription_id = params["id"]
-      prescription = Prescription.find_by(id: prescription_id)
-      prescription.destroy
-      render json: {message: "Prescription successfully deleted!"}
-    # else
-    #   render json: {errors: "Not Authorized!"}, status: unauthorized
-    end
-  end
+  # def destroy
+  #   if current_user #&&current_user.admin
+  #     prescription_id = params["id"]
+  #     prescription = Prescription.find_by(id: prescription_id)
+  #     prescription.destroy
+  #     render json: {message: "Prescription successfully deleted!"}
+  #   # else
+  #   #   render json: {errors: "Not Authorized!"}, status: unauthorized
+  #   end
+  # end
 end
