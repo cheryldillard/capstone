@@ -92,7 +92,7 @@
 						
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active">
-								<a href="index.html">Home</a>
+								<a href="/#/">Home</a>
 							</li>
 							
 							<li>
@@ -114,14 +114,33 @@
 									<li><a href="#">CSS3</a></li> 
 								</ul>
 							</li>
-							<li><a href="elements.html">Add a new prescription</a></li>
-							<li><a href="contact.html">Show all my prescriptions</a></li>
+							<li><a href="/#/prescriptions/new">Add a new prescription</a></li>
+							<li><a href="/#/prescriptions">Show all prescriptions</a></li>
 						</ul>
 					</nav>
 				<!-- </div> -->
 
 			</div>
 		</header>
+
+		<div id="fh5co-hero" style="background-image: url(images/slide_2.jpg);">
+			<div class="overlay"></div>
+			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
+			<!-- End fh5co-arrow -->
+			<div class="container">
+				<div class="col-md-12">
+					<div class="fh5co-hero-wrap">
+						<div class="fh5co-hero-intro">
+							<h1 class="to-animate hero-animate-1">Welcome to Your Personal Prescription Manager</h1>
+							<h2 class="to-animate hero-animate-2">Sign up here<a href="http://freehtml5.co" target="_blank"> or login below</a></h2>
+							<p class="to-animate hero-animate-3"><a href="/#/signup" class="btn btn-outline btn-md">Sign up</a></p>
+							<p class="to-animate hero-animate-3"><a href="/#/logout" class="btn btn-outline btn-md">Log Out</a></p>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
 
 		<router-view></router-view>
 
@@ -204,30 +223,13 @@
 
 <template id="home-page">
   <div class="">
-		<div id="fh5co-hero" style="background-image: url(images/slide_2.jpg);">
-			<div class="overlay"></div>
-			<a href="#fh5co-main" class="smoothscroll fh5co-arrow to-animate hero-animate-4"><i class="ti-angle-down"></i></a>
-			<!-- End fh5co-arrow -->
-			<div class="container">
-				<div class="col-md-12">
-					<div class="fh5co-hero-wrap">
-						<div class="fh5co-hero-intro">
-							<h1 class="to-animate hero-animate-1">Welcome to Your Personal Prescription Manager</h1>
-							<h2 class="to-animate hero-animate-2">Sign up here<a href="http://freehtml5.co" target="_blank"> or login below</a></h2>
-							<p class="to-animate hero-animate-3"><a href="/#/signup" class="btn btn-outline btn-md">Sign up</a></p>
-							<p class="to-animate hero-animate-3"><a href="/#/logout" class="btn btn-outline btn-md">Log Out</a></p>
-						</div>
-					</div>
-				</div>
-			</div>		
-		</div>
 
 		<div id="fh5co-main">
 			
 			<div class="fh5co-cards">
 				<div class="container-fluid">
 					<div class="row animate-box">
-						<div class="col-md-12 heading text-center"><h2>Here are your prescriptions</h2></div>
+						<div class="col-md-12 heading text-center"><h1>Here are your prescriptions</h1></div>
 					</div>
 				</div>
 					<div class="row">
@@ -239,7 +241,8 @@
 								     <p>{{ prescription.number }}</p>
 								     <p>{{ prescription.dosage }}</p>
 								     <p>{{ prescription.regimen }}</p>
-								     <a href="/#/">Back to home page</a>
+								     <!-- <a v-bind:href="  '/#/prescriptions/' + prescription.id + '/edit'   ">Edit this prescription</a> -->
+								     <a href="/#/">Edit this prescription</a>
 
 								     
 								     <!-- <router-link v-bind:to="{ path: '/' }">Back to all prescriptions</router-link> -->
@@ -311,66 +314,6 @@
 			</div>
 			<!-- END container -->
 
-			<div class="animate-box fh5co-product-2">
-				<div class="fh5co-half img" style="background-image: url(images/img_large_6.jpg);">
-					
-				</div>
-				<div class="fh5co-half">
-					<!-- <h3>Add a new prescription here</h3>
-					<h4></h4>
-					<p></p>
-					<p><a href="#" class="btn btn-outline btn-md">Enter</a></p> -->
-					<template id="prescriptions-new-page">
-				  <div class="container">
-				    <h1>Add New Prescription Here</h1>
-				    <ul>
-				      <li class="text-danger" v-for="error in errors">{{ error }}</li>
-				    </ul>
-				    <div class="form-group">
-				      <label>Number:</label> 
-				      <input type="number" class="form-control" v-model="number">
-				    </div>
-				    <div class="form-group">
-				      <label>Dosage:</label>
-				      <input type="dosage" class="form-control" v-model="dosage">
-				    </div>
-				    <div class="form-group">
-				      <label>Regimen:</label>
-				      <input type="regimen" class="form-control" v-model="regimen">
-				    </div>
-				    <button class="btn btn-primary" v-on:click="submit()">Submit</button>
-				  </div>
-					</template> 
-				</div>
-			</div>
-
-			<div id="fh5co-testimonial">
-
-					<div class="container">
-				<div class="row">
-					<!-- Start Slider Testimonial -->
-	            <h2 class="fh5co-uppercase-heading-sm text-center animate-box">Customer Says...</h2>
-	            <div class="fh5co-spacer fh5co-spacer-xs"></div>
-	            <div class="owl-carousel-fullwidth animate-box">
-	            <div class="item">
-	              <p class="text-center quote">&ldquo;Design must be functional and functionality must be translated into visual aesthetics, without any reliance on gimmicks that have to be explained. &rdquo; <cite class="author">&mdash; Ferdinand A. Porsche</cite></p>
-	            </div>
-	            <div class="item">
-	              <p class="text-center quote">&ldquo;Creativity is just connecting things. When you ask creative people how they did something, they feel a little guilty because they didn’t really do it, they just saw something. It seemed obvious to them after a while. &rdquo;<cite class="author">&mdash; Steve Jobs</cite></p>
-	            </div>
-	            <div class="item">
-	              <p class="text-center quote">&ldquo;I think design would be better if designers were much more skeptical about its applications. If you believe in the potency of your craft, where you choose to dole it out is not something to take lightly. &rdquo;<cite class="author">&mdash; Frank Chimero</cite></p>
-	            </div>
-	          </div>
-	           <!-- End Slider Testimonial -->
-
-				</div>
-				<!-- END row -->
-				</div>
-			</div>
-
-		
-		</div>
 		<!-- END fhtco-main -->
 
   </div>
@@ -424,7 +367,30 @@
   </div>
 </template>
 
-<!-- <template id="prescriptions-new-page">
+<!-- 
+<template id="prescriptions-edit-page">
+  <div class="container">
+    <h1>Edit Prescription</h1>
+    <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
+    <div class="form-group">
+      <label>Number:</label> 
+      <input type="text" class="form-control" v-model="title">
+    </div>
+    <div class="form-group">
+      <label>Dosage:</label>
+      <input type="text" class="form-control" v-model="ingredients">
+    </div>
+    <div class="form-group">
+      <label>Regimen:</label>
+      <input type="text" class="form-control" v-model="chef">
+    </div>
+    <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+  </div>
+</template> -->
+
+<template id="prescriptions-new-page">
   <div class="container">
     <h1>Enter New Prescription Here</h1>
     <ul>
@@ -432,17 +398,17 @@
     </ul>
     <div class="form-group">
       <label>Number:</label> 
-      <input type="number" class="form-control" v-model="number">
+      <input type="text" class="form-control" v-model="number">
     </div>
     <div class="form-group">
       <label>Dosage:</label>
-      <input type="dosage" class="form-control" v-model="dosage">
+      <input type="text" class="form-control" v-model="dosage">
     </div>
     <div class="form-group">
       <label>Regimen:</label>
-      <input type="regimen" class="form-control" v-model="regimen">
+      <input type="text" class="form-control" v-model="regimen">
     </div>
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
   </div>
-</template>  -->
+</template> 
 

@@ -4,7 +4,7 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to your Personal Prescription Manager!",
+      // message: "Welcome to your Personal Prescription Manager!",
       prescriptions: [],
       currentPrescription: {},
       numberFilter: "",
@@ -185,14 +185,54 @@ var PrescriptionIndexPage = {
   computed: {}
 };
 
+var PrescriptionsEditPage = {
+  template: "#recipes-edit-page",
+  data: function() {
+    return {
+      number: "",
+      dosage: "",
+      regimen: "",
+      errors: []
+    };
+  },
+  created: function() {
+    axios.get("/prescriptions/" + this.$route.params.id).then(
+      function(response) {
+        this.number = response.data.number;
+        this.dosage = response.data.dosage;
+        this.regimen = response.data.regimen;
+      }.bind(this)
+    );
+  },
+  methods: {
+    submit: function() {
+      var params = {
+        inputNumber: this.number,
+        inputDosage: this.dosage,
+        inputRegimen: this.regimen
+      };
+      axios
+        .patch("/prescriptions/" + this.$route.params.id, params)
+        .then(function(response) {
+          router.push("/");
+        })
+        .catch(
+          function(error) {
+            this.errors = error.response.data.errors;
+            router.push("/login");
+          }.bind(this)
+        );
+    }
+  }
+};
+
 var router = new VueRouter({
   routes: [
     { path: "/", component: HomePage },
     { path: "/prescriptions/new", component: PrescriptionsNewPage },
-    // { path: "/prescriptions/edit", component: PrescriptionsEditPage },
     { path: "/prescriptions/:id", component: PrescriptionsShowPage },
     { path: "/prescriptions/", component: PrescriptionIndexPage },
-    // { path: "/sample", component: SamplePage },
+    { path: "/prescriptions/:id/edit", component: PrescriptionsEditPage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage }
