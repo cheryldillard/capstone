@@ -4,11 +4,40 @@ var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      message: "Welcome to your Personal Prescription Manager!",
+      prescriptions: [],
+      currentPrescription: {},
+      numberFilter: "",
+      dosageFilter: "",
+      regimenFilter: ""
     };
   },
-  created: function() {},
-  methods: {},
+
+  created: function() {
+    axios.get("prescriptions").then(
+      function(response) {
+        this.prescriptions = response.data;
+      }.bind(this)
+    );
+  },
+
+  methods: {
+    setCurrentPrescription: function(inputPrescription) {
+      this.currentPrescription = inputPrescription;
+    }
+  },
+
+  // isValidPrescription: function(inputPrescription) {
+  //   var validNumber = inputPrescription.number
+  //     .toLowerCase()
+  //     .includes(this.nameFilter.toLowerCase());
+  //   var validPrice = inputProduct.price
+  //     .toLowerCase()
+  //     .includes(this.priceFilter.toLowerCase());
+  //   return validName && validPrice;
+  // }
+  // },
+
   computed: {}
 };
 
@@ -175,13 +204,12 @@ var router = new VueRouter({
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage }
   ]
-  // scrollBehavior: function(to, from, savedPosition) {
-  //   return { x: 0, y: 0 };
-  // }
 });
 
+// console.log("hello");
+
 var app = new Vue({
-  el: "#vue-app",
+  el: "#app",
   router: router,
   mounted: function() {
     var jwt = localStorage.getItem("jwt");
