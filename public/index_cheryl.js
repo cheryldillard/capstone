@@ -1,3 +1,5 @@
+/* Working base .js */
+
 /* global Vue, VueRouter, axios */
 
 var HomePage = {
@@ -14,9 +16,10 @@ var HomePage = {
   },
 
   created: function() {
-    axios.get("prescriptions").then(
+    axios.get("/prescriptions").then(
       function(response) {
         this.prescriptions = response.data;
+        console.log(this.prescriptions);
       }.bind(this)
     );
   },

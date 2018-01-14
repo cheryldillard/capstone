@@ -1,14 +1,36 @@
-/* global Vue, VueRouter, axios */
+/* global Vue, VueRouter, axios, themeSetup */
 
 var HomePage = {
   template: "#home-page",
   data: function() {
     return {
-      message: "Welcome to Vue.js!"
+      message: "Welcome to your Personal Prescription Manager!",
+      prescriptions: [],
+      currentPrescription: {},
+      numberFilter: "",
+      dosageFilter: "",
+      regimenFilter: ""
     };
   },
-  created: function() {},
-  methods: {},
+
+  created: function() {
+    axios.get("/prescriptions").then(
+      function(response) {
+        this.prescriptions = response.data;
+        console.log(this.prescriptions);
+      }.bind(this)
+    );
+  },
+
+  mounted: function() {
+    themeSetup();
+  },
+  methods: {
+    setCurrentPrescription: function(inputPrescription) {
+      this.currentPrescription = inputPrescription;
+    }
+  },
+
   computed: {}
 };
 
@@ -174,10 +196,10 @@ var router = new VueRouter({
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage }
-  ]
-  // scrollBehavior: function(to, from, savedPosition) {
-  //   return { x: 0, y: 0 };
-  // }
+  ],
+  scrollBehavior: function(to, from, savedPosition) {
+    return { x: 0, y: 0 };
+  }
 });
 
 var app = new Vue({
