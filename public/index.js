@@ -115,17 +115,19 @@ var PrescriptionsNewPage = {
   data: function() {
     return {
       number: "",
-      name: "",
-      description: "",
       dosage: "",
       regimen: "",
-      errors: []
+      medicationId: "",
+      errors: [],
+      medications: [],
+      selectedMedicationId: 1
     };
   },
   created: function() {
-    axios.get("/medications/" + this.$route.params.id).then(
+    axios.get("/medications").then(
       function(response) {
-        this.medication = response.data;
+        this.medications = response.data;
+        console.log(this.medications);
       }.bind(this)
     );
   },
@@ -133,10 +135,9 @@ var PrescriptionsNewPage = {
     submit: function() {
       var params = {
         inputNumber: this.number,
-        inputName: this.name,
-        inputDescription: this.description,
         inputDosage: this.dosage,
-        inputRegimen: this.regimen
+        inputRegimen: this.regimen,
+        inputMedicationId: this.medicationId
       };
       axios
         .post("/prescriptions", params)
