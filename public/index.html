@@ -72,6 +72,12 @@
   <script src="https://unpkg.com/axios/dist/axios.js"></script>
   <script src="index.js" defer></script>
 
+  <style>
+    .text-danger {
+      color: red !important;
+    }
+  </style>
+
 	</head>
 	<body>
 
@@ -229,26 +235,31 @@
 			<div class="fh5co-cards">
 				<div class="container-fluid">
 					<div class="row animate-box">
-						<div class="col-md-12 heading text-center"><h1>Here are your prescriptions</h1></div>
+						<div class="col-md-12 heading text-center"><h1>Here are your prescriptions</h1>
+            </div>
 					</div>
-				</div>
 					<div class="row">
+
 
 						<div class="col-lg-3 col-md-6 col-sm-6" v-for="prescription in prescriptions">
 							<a class="fh5co-card" href="/#/prescriptions">
 								<img src="images/img_large_3.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
-								   <div class="">
-								     <p>{{ prescription.number }}</p>
+								<div class="fh5co-card-body">
+                  <h3 v-bind:class="{'text-danger': prescription.conflict}">{{ prescription.medication.name }} {{ prescription.medication.id }}</h3>
+                  <p>Number: {{ prescription.number }}</p>
+                  <p>Regimen: {{ prescription.regimen }}</p>
+                  <p>Dosage: {{ prescription.dosage }}</p>
+                  <p>Conflicts: {{ prescription.medication.conflicts }}</p>
+								     <!-- <p>{{ prescription.number }}</p>
 								     <p>{{ prescription.dosage }}</p>
 								     <p>{{ prescription.regimen }}</p>
-								     <!-- <a v-bind:href="  '/#/prescriptions/' + prescription.id + '/edit'   ">Edit this prescription</a> -->
-								     <a href="/#/">Edit this prescription</a>
-
-								     
-								     <!-- <router-link v-bind:to="{ path: '/' }">Back to all prescriptions</router-link> -->
-								  </div>
+                     <a href="/#/prescriptions">Back to home page</a> -->
+								</div>
 							</a>
 						</div>
+
+
+
 					</div>
 				</div>
 			</div>
@@ -309,13 +320,13 @@
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
 					</div>
 				</div>
-				<!-- END row -->
+				END row
 				
 			</div>
-			<!-- END container -->
+			<!-- END container
 
 		<!-- END fhtco-main -->
-
+ 
   </div>
 </template>
 
@@ -367,32 +378,10 @@
   </div>
 </template>
 
-<!-- 
+
 <template id="prescriptions-edit-page">
   <div class="container">
     <h1>Edit Prescription</h1>
-    <ul>
-      <li class="text-danger" v-for="error in errors">{{ error }}</li>
-    </ul>
-    <div class="form-group">
-      <label>Number:</label> 
-      <input type="text" class="form-control" v-model="title">
-    </div>
-    <div class="form-group">
-      <label>Dosage:</label>
-      <input type="text" class="form-control" v-model="ingredients">
-    </div>
-    <div class="form-group">
-      <label>Regimen:</label>
-      <input type="text" class="form-control" v-model="chef">
-    </div>
-    <button class="btn btn-primary" v-on:click="submit()">Submit</button>
-  </div>
-</template> -->
-
-<template id="prescriptions-new-page">
-  <div class="container">
-    <h1>Enter New Prescription Here</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
@@ -409,6 +398,49 @@
       <input type="text" class="form-control" v-model="regimen">
     </div>
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+  </div>
+</template>
+
+<template id="prescriptions-new-page">
+  <div class="container">
+    <h1>Enter New Prescription Here</h1>
+    <ul>
+      <li class="text-danger" v-for="error in errors">{{ error }}</li>
+    </ul>
+    <div class="form-group">
+      <label>Number:</label> 
+      <input type="text" class="form-control" v-model="number">
+    </div>
+    <div class="form-group">
+      <label>Name:</label> 
+      <input type="text" class="form-control" v-model="name">
+    </div>
+    <div class="form-group">
+      <label>Description:</label> 
+      <input type="text" class="form-control" v-model="description">
+    </div>
+    <div class="form-group">
+      <label>Dosage:</label>
+      <input type="text" class="form-control" v-model="dosage">
+    </div>
+    <div class="form-group">
+      <label>Regimen:</label>
+      <input type="text" class="form-control" v-model="regimen">
+    </div>
+
+    <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+
+    <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Display Medications
+      <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a href="/#/medications">medications</a>
+            <!-- <p>Name: {{ medication.name }}</p>
+            <p>Description: {{ medication.description }}</p></li> -->
+        <li><a href="#">CSS</a></li>
+        <li><a href="#">JavaScript</a></li>
+      </ul>
+    </div>
   </div>
 </template> 
 

@@ -115,15 +115,26 @@ var PrescriptionsNewPage = {
   data: function() {
     return {
       number: "",
+      name: "",
+      description: "",
       dosage: "",
       regimen: "",
       errors: []
     };
   },
+  created: function() {
+    axios.get("/medications/" + this.$route.params.id).then(
+      function(response) {
+        this.medication = response.data;
+      }.bind(this)
+    );
+  },
   methods: {
     submit: function() {
       var params = {
         inputNumber: this.number,
+        inputName: this.name,
+        inputDescription: this.description,
         inputDosage: this.dosage,
         inputRegimen: this.regimen
       };
@@ -160,23 +171,24 @@ var PrescriptionsShowPage = {
       }.bind(this)
     );
   },
-
   methods: {},
   computed: {}
 };
 
-var PrescriptionIndexPage = {
-  template: "#prescriptions-index-page",
+var MedicationsShowPage = {
+  template: "#medications-show-page",
   data: function() {
     return {
-      prescriptions: []
+      medication: {
+        name: "name",
+        description: ["description"]
+      }
     };
   },
   created: function() {
-    axios.get("/prescriptions").then(
+    axios.get("/medications/" + this.$route.params.id).then(
       function(response) {
-        this.prescriptions = response.data;
-        console.log(response.data);
+        this.medication = response.data;
       }.bind(this)
     );
   },
@@ -186,7 +198,7 @@ var PrescriptionIndexPage = {
 };
 
 var PrescriptionsEditPage = {
-  template: "#recipes-edit-page",
+  template: "#prescriptions-edit-page",
   data: function() {
     return {
       number: "",
@@ -231,8 +243,9 @@ var router = new VueRouter({
     { path: "/", component: HomePage },
     { path: "/prescriptions/new", component: PrescriptionsNewPage },
     { path: "/prescriptions/:id", component: PrescriptionsShowPage },
-    { path: "/prescriptions/", component: PrescriptionIndexPage },
+    { path: "/prescriptions/", component: HomePage },
     { path: "/prescriptions/:id/edit", component: PrescriptionsEditPage },
+    { path: "/medications/:id", component: MedicationsShowPage },
     { path: "/signup", component: SignupPage },
     { path: "/login", component: LoginPage },
     { path: "/logout", component: LogoutPage }

@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   patch "/prescriptions" => "prescriptions#update"
   delete "/prescriptions" => "prescriptions#destroy"
 
+  get "/medications" => "medications#index"
 end

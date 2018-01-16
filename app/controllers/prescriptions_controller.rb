@@ -1,6 +1,10 @@
 class PrescriptionsController < ApplicationController
   def index 
-    prescriptions = Prescription.all 
+    if current_user
+      prescriptions = current_user.prescriptions
+    else
+      prescriptions = Prescription.all 
+    end
     render json: prescriptions.as_json
     # user_search_terms = params[:search]
     # if user_search_terms 
