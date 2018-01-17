@@ -179,9 +179,11 @@ var PrescriptionsNewPage = {
                   prescription.medication
                 );
                 this.medicationWarning =
-                  conflict.name +
-                  " conflicts with " +
-                  prescription.medication.name;
+                  "This medication conflicts with your current prescription " +
+                  // conflict.name +
+                  // " conflicts with " +
+                  prescription.medication.name +
+                  ". Please check with your doctor before continuing this new medication.";
               }
             }.bind(this)
           );
