@@ -17,14 +17,14 @@ class PrescriptionsController < ApplicationController
       number: params[:inputNumber],
       dosage: params[:inputDosage],
       regimen: params[:inputRegimen],
-      medication_id: 1,  #params["id"]
+      medication_id: params[:inputMedicationId],
       user_id: current_user.id,
       obsolete: false
       )
     if prescription.save
       render json: prescription.as_json
     else
-      render json: {errors: prescription.errors.full_messages}, status: bad_request
+      render json: {errors: prescription.errors.full_messages}, status: :bad_request
     end
   end 
 

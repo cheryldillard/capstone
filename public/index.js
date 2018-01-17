@@ -118,9 +118,11 @@ var PrescriptionsNewPage = {
       dosage: "",
       regimen: "",
       medicationId: "",
+      conflicts: "",
       errors: [],
       medications: [],
-      selectedMedicationId: 1
+      selectedMedicationId: 1,
+      medicationWarning: null
     };
   },
   created: function() {
@@ -130,15 +132,23 @@ var PrescriptionsNewPage = {
         console.log(this.medications);
       }.bind(this)
     );
+    axios.get("/prescriptions").then(
+      function(response) {
+        this.prescriptions = response.data;
+        console.log("prescriptions are:", this.prescriptions);
+      }.bind(this)
+    );
   },
+
   methods: {
     submit: function() {
       var params = {
         inputNumber: this.number,
         inputDosage: this.dosage,
         inputRegimen: this.regimen,
-        inputMedicationId: this.medicationId
+        inputMedicationId: this.selectedMedicationId
       };
+      console.log("new prescription params:", params);
       axios
         .post("/prescriptions", params)
         .then(function(response) {
@@ -150,6 +160,33 @@ var PrescriptionsNewPage = {
             router.push("/login");
           }.bind(this)
         );
+    }
+  },
+  watch: {
+    selectedMedicationId: function() {
+      this.medicationWarning = null;
+      console.log(
+        "you are trying to add medication id",
+        this.selectedMedicationId
+      );
+      this.prescriptions.forEach(
+        function(prescription) {
+          prescription.medication.conflicts.forEach(
+            function(conflict) {
+              if (this.selectedMedicationId === conflict.id) {
+                console.log(
+                  "houston we have a problem",
+                  prescription.medication
+                );
+                this.medicationWarning =
+                  conflict.name +
+                  " conflicts with " +
+                  prescription.medication.name;
+              }
+            }.bind(this)
+          );
+        }.bind(this)
+      );
     }
   }
 };

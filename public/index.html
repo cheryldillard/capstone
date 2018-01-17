@@ -412,6 +412,15 @@
       <input type="text" class="form-control" v-model="number">
     </div>
     <div class="form-group">
+      <label>Medication:</label>
+      <select class="form-control" v-model="selectedMedicationId">
+        <option v-for="medication in medications" v-bind:value="medication.id">
+            {{ medication.name }}
+        </option>
+      </select>
+    </div>
+    <p v-if="medicationWarning" class="text-danger">{{ medicationWarning }}</p>
+    <div class="form-group">
       <label>Prescription Dosage:</label>
       <input type="text" class="form-control" v-model="dosage">
     </div>
@@ -422,14 +431,8 @@
     
 
 
-    <select v-model="selectedMedicationId">
-    <option v-for="medication in medications" v-bind:value="medication.id">
-          {{ medication.name }}
-    </option>
-    </select>
 
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
-
   </div>
 </template> 
 
