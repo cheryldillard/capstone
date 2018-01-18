@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   delete "/prescriptions" => "prescriptions#destroy"
 
   get "/medications" => "medications#index"
+
+  get "/fda_search" => "fda#search"
 end

@@ -102,7 +102,7 @@
 							</li>
               <li><a href="/#/prescriptions/new">Add a new prescription</a></li>
               <li><a href="/#/prescriptions">Show all prescriptions</a></li>
-							<li><a href="/#/prescriptions/edit">Edit or Update a prescriptions</a></li>
+							<li><a href="/#/prescriptions/edit">Medication Information</a></li>
 						</ul>
 					</nav>
 				<!-- </div> -->
@@ -131,7 +131,7 @@
 
 		<router-view></router-view>
 
-		<footer role="contentinfo" id="fh5co-footer">
+		<!-- <footer role="contentinfo" id="fh5co-footer">
 			<a href="#" class="fh5co-arrow fh5co-gotop footer-box"><i class="ti-angle-up"></i></a>
 			<div class="container">
 				<div class="row">
@@ -175,9 +175,9 @@
 					
 				</div>
 				<!-- END row -->
-				<div class="fh5co-spacer fh5co-spacer-md"></div>
+				<!-- <div class="fh5co-spacer fh5co-spacer-md"></div>
 			</div>
-		</footer>
+		</footer> --> 
 	</div>
 			
 			
@@ -234,7 +234,7 @@
                   <p>Number: {{ prescription.number }}</p>
                   <p>Regimen: {{ prescription.regimen }}</p>
                   <p>Dosage: {{ prescription.dosage }}</p>
-                  <p v-if="prescription.medication.conflicts[0]">Conflicts: {{ prescription.medication.conflicts[0].name}}</p>
+                  <p v-if=prescription.medication.conflicts[0]>Conflicts: {{ prescription.medication.conflicts[0].name}}</p>
                   <p v-else>Conflicts: None</p>
 								     <!-- <p>{{ prescription.number }}</p>
 								     <p>{{ prescription.dosage }}</p>
@@ -250,7 +250,7 @@
 				</div>
 			</div>
 
-			<div class="container">
+<!-- 			<div class="container">
 				
 				<div class="row text-center" id="fh5co-features">
 					<div class="col-md-12 heading animate-box"><h2>Awesome Features</h2></div>
@@ -308,12 +308,12 @@
 				</div>
 		<!-- 		END row -->
 				
-			</div>
+			<!-- </div> -->
 			<!-- END container
 
 		<!-- END fhtco-main -->
  
-  </div>
+  <!-- </div> --> -->
 </template>
 
 <template id="signup-page">
@@ -415,9 +415,6 @@
       <input type="text" class="form-control" v-model="regimen">
     </div>
     
-
-
-
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
   </div>
 </template> 

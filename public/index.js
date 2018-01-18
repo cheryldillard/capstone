@@ -1,5 +1,10 @@
 /* global Vue, VueRouter, axios, themeSetup */
 
+var searchTerms = "evista";
+axios.get("/fda_search?search=" + searchTerms).then(function(response) {
+  console.log("fda search", response.data);
+});
+
 var HomePage = {
   template: "#home-page",
   data: function() {
@@ -301,8 +306,9 @@ var router = new VueRouter({
 var app = new Vue({
   el: "#vue-app",
   router: router,
-  mounted: function() {
+  created: function() {
     var jwt = localStorage.getItem("jwt");
+    console.log("jwt", jwt);
     if (jwt) {
       axios.defaults.headers.common["Authorization"] = jwt;
     }
