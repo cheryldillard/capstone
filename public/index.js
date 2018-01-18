@@ -9,7 +9,8 @@ var HomePage = {
       currentPrescription: {},
       numberFilter: "",
       dosageFilter: "",
-      regimenFilter: ""
+      regimenFilter: "",
+      showHomeHeader: true
     };
   },
 
@@ -75,7 +76,8 @@ var LoginPage = {
     return {
       email: "",
       password: "",
-      errors: []
+      errors: [],
+      showHomeHeader: true
     };
   },
   methods: {
@@ -89,6 +91,7 @@ var LoginPage = {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
+          var showHomeHeader = false;
           router.push("/");
         })
         .catch(
