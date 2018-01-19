@@ -1,10 +1,5 @@
 /* global Vue, VueRouter, axios, themeSetup */
 
-var searchTerms = "evista";
-axios.get("/fda_search?search=" + searchTerms).then(function(response) {
-  console.log("fda search", response.data);
-});
-
 var HomePage = {
   template: "#home-page",
   data: function() {
@@ -34,6 +29,10 @@ var HomePage = {
   methods: {
     setCurrentPrescription: function(inputPrescription) {
       this.currentPrescription = inputPrescription;
+    },
+    edit: function(prescription) {
+      console.log("hello i want to edit", prescription.id);
+      router.push("/prescriptions/" + prescription.id + "/edit");
     }
   },
 
@@ -205,17 +204,24 @@ var PrescriptionsShowPage = {
   template: "#prescriptions-show-page",
   data: function() {
     return {
-      prescription: {
-        number: "number",
-        dosage: ["dosage"],
-        regimen: ["regimen"]
-      }
+      prescription: { medication: {} },
+      fdaResults: {}
     };
   },
   created: function() {
     axios.get("/prescriptions/" + this.$route.params.id).then(
       function(response) {
         this.prescription = response.data;
+        console.log("The prescription is", this.prescription);
+
+        var searchTerms = this.prescription.medication.name;
+        axios.get("/fda_search?search=" + searchTerms).then(
+          function(response) {
+            // console.log("fda search for", searchTerms, response.data);
+            this.fdaResults = response.data.results[0];
+            console.log("fdaResults", this.fdaResults);
+          }.bind(this)
+        );
       }.bind(this)
     );
   },

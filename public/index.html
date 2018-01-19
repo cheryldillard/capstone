@@ -102,7 +102,7 @@
 							</li>
               <li><a href="/#/prescriptions/new">Add a new prescription</a></li>
               <li><a href="/#/prescriptions">Show all prescriptions</a></li>
-							<li><a href="/#/prescriptions/edit">Medication Information</a></li>
+							<li><a href="#"></a></li>
 						</ul>
 					</nav>
 				<!-- </div> -->
@@ -227,21 +227,29 @@
 
 
 						<div class="col-lg-3 col-md-6 col-sm-6" v-for="prescription in prescriptions">
-							<a class="fh5co-card" href="/#/prescriptions">
+							<div class="fh5co-card">
 								<img src="images/img_large_3.jpg" alt="Free HTML5 Bootstrap template" class="img-responsive">
 								<div class="fh5co-card-body">
-                  <h3 v-bind:class="{'text-danger': prescription.conflict}">{{ prescription.medication.name }} {{ prescription.medication.id }}</h3>
+                  <a v-bind:href="'/#/prescriptions/' + prescription.id">
+                    <h3 v-bind:class="{'text-danger': prescription.conflict}">{{ prescription.medication.name }}</h3>
+                  </a>
                   <p>Number: {{ prescription.number }}</p>
                   <p>Regimen: {{ prescription.regimen }}</p>
-                  <p>Dosage: {{ prescription.dosage }}</p>
-                  <p v-if=prescription.medication.conflicts[0]>Conflicts: {{ prescription.medication.conflicts[0].name}}</p>
+                  <p>Dosage: {{ prescription.dosage }}</p> 
+                  <p v-if=prescription.medication.conflicts[0] v-bind:class="{'text-danger': prescription.conflict}">Conflicts: {{ prescription.medication.conflicts[0].name}}</p>
                   <p v-else>Conflicts: None</p>
 								     <!-- <p>{{ prescription.number }}</p>
 								     <p>{{ prescription.dosage }}</p>
 								     <p>{{ prescription.regimen }}</p>
                      <a href="/#/prescriptions">Back to home page</a> -->
+                  <button class="btn btn-primary" v-on:click="edit(prescription)">Edit Prescription</button>
+
+
+<!-- 
+                <router-link :to="{ name: '/#/prescriptions/edit/prescription.id}" 
+                class="dropdown-item">Edit Prescription</router-link> -->
 								</div>
-							</a>
+							</div>
 						</div>
 
 
@@ -383,7 +391,7 @@
       <label>Regimen:</label>
       <input type="text" class="form-control" v-model="regimen">
     </div>
-    <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+    <input type="button" onclick="alert('Prescription Updated Successfully')" value="Submit">
   </div>
 </template>
 
@@ -416,6 +424,39 @@
     </div>
     
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
+  </div>
+</template> 
+
+
+<template id="prescriptions-show-page">
+  <div class="container">
+    <h1>Medication Information Page</h1>
+    <p>Medication name: {{ prescription.medication.name }}</p>
+
+    <h2>Drug interactions table</h2>
+    <div v-for="table in fdaResults.drug_interactions_table" v-html="table" style="font-size: 0.5em">
+    </div>
+
+    <h2> Adverse Reactions table</h2>
+    <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
+    </div>
+
+    <h2>Description</h2>
+    <p>{{ fdaResults.description }}</p>
+
+    <h2>Adverse reactions</h2>
+    <p>{{ fdaResults.adverse_reactions }}</p>
+
+    <h2>Contraindications</h2>
+    <p>{{ fdaResults.contraindications }}</p>
+
+    <h2>Dosage and Strength</h2>
+    <p>{{ fdaResults.dosage_forms_and_strengths }}</p>
+
+    <h2>Indications and Usage</h2>
+    <p>{{ fdaResults.indications_and_usage }}</p>
+
+
   </div>
 </template> 
 

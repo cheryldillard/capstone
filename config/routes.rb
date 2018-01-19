@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   
   get "/prescriptions" => "prescriptions#index"
   post "/prescriptions" => "prescriptions#create"
-  get "/prescriptions" => "prescriptions#show"
-  patch "/prescriptions" => "prescriptions#update"
+  get "/prescriptions/:id" => "prescriptions#show"
+  patch "/prescriptions/:id" => "prescriptions#update"
   delete "/prescriptions" => "prescriptions#destroy"
 
   get "/medications" => "medications#index"
