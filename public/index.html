@@ -244,10 +244,6 @@
                      <a href="/#/prescriptions">Back to home page</a> -->
                   <button class="btn btn-primary" v-on:click="edit(prescription)">Edit Prescription</button>
 
-
-<!-- 
-                <router-link :to="{ name: '/#/prescriptions/edit/prescription.id}" 
-                class="dropdown-item">Edit Prescription</router-link> -->
 								</div>
 							</div>
 						</div>
@@ -413,7 +409,25 @@
         </option>
       </select>
     </div>
-    <p v-if="medicationWarning" class="text-danger">{{ medicationWarning }}</p>
+
+    <!-- <div class="alert alert-success">
+      <strong>Success!</strong> Your new prescription has been entered.
+    </div>
+
+    <div class="alert alert-warning">
+      <strong>Warning!</strong> This prescription is similar to an older prescription.  Check with your doctor or pharmacist on which one you should take.
+    </div>
+
+    <div class="alert alert-danger">
+      <strong>Danger!</strong> This prescription has counteractions with another prescription you are taking! Check with your doctor or pharmacist immediately on how to take these combined medications!
+    </div> -->
+
+    <p v-if="medicationDuplicateMessage" class="alert alert-warning">
+      <strong>Warning!</strong>{{ medicationDuplicateMessage }}</p>
+
+    <p v-if="medicationWarning" class="alert alert-danger">
+      <strong>Danger!</strong>{{ medicationWarning }}</p>
+
     <div class="form-group">
       <label>Prescription Dosage:</label>
       <input type="text" class="form-control" v-model="dosage">

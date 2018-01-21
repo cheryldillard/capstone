@@ -129,7 +129,8 @@ var PrescriptionsNewPage = {
       errors: [],
       medications: [],
       selectedMedicationId: 1,
-      medicationWarning: null
+      medicationWarning: null,
+      medicationDuplicateMessage: null
     };
   },
   created: function() {
@@ -172,12 +173,14 @@ var PrescriptionsNewPage = {
   watch: {
     selectedMedicationId: function() {
       this.medicationWarning = null;
+      this.medicationDuplicateMessage = null;
       console.log(
         "you are trying to add medication id",
         this.selectedMedicationId
       );
       this.prescriptions.forEach(
         function(prescription) {
+          // Look for conflicts
           prescription.medication.conflicts.forEach(
             function(conflict) {
               if (this.selectedMedicationId === conflict.id) {
@@ -186,14 +189,20 @@ var PrescriptionsNewPage = {
                   prescription.medication
                 );
                 this.medicationWarning =
-                  "This medication conflicts with your current prescription " +
-                  // conflict.name +
-                  // " conflicts with " +
+                  " This prescription has counteractions with " +
                   prescription.medication.name +
-                  ". Please check with your doctor before continuing this new medication.";
+                  "!  Check with your doctor or pharmacist immediately on how to take these combined medications!";
               }
             }.bind(this)
           );
+
+          // Look for duplicates
+          // console.log(prescription.medication)
+          if (prescription.medication.id === this.selectedMedicationId) {
+            console.log("THIS IS A DUPLICATE!!!");
+            this.medicationDuplicateMessage =
+              "This medication is a duplicate of an older prescription.  Check with your doctor or pharmacist on which one you should take.";
+          }
         }.bind(this)
       );
     }
