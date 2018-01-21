@@ -20,7 +20,8 @@ class Medication < ApplicationRecord
       id: id,
       name: name,
       description: description,
-      conflicts: conflicts
+      conflicts: conflicts,
+      image: image
     }
   end
 end

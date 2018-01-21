@@ -244,7 +244,8 @@ var MedicationsShowPage = {
     return {
       medication: {
         name: "name",
-        description: ["description"]
+        description: ["description"],
+        image: ["url"]
       }
     };
   },
