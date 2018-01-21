@@ -191,7 +191,7 @@ var PrescriptionsNewPage = {
                 this.medicationWarning =
                   " This prescription has counteractions with " +
                   prescription.medication.name +
-                  "!  Check with your doctor or pharmacist immediately on how to take these combined medications!";
+                  ".  Check with your doctor or pharmacist immediately on how to take these combined medications.";
               }
             }.bind(this)
           );
@@ -244,8 +244,7 @@ var MedicationsShowPage = {
     return {
       medication: {
         name: "name",
-        description: ["description"],
-        image: ["url"]
+        description: ["description"]
       }
     };
   },
