@@ -90,7 +90,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/cheryl_logo.png" alt=""></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/cheryl4_logo.png" alt=""></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
@@ -117,7 +117,7 @@
 				<div class="col-md-12">
 					<div class="fh5co-hero-wrap">
 						<div class="fh5co-hero-intro">
-							<h1 class="to-animate hero-animate-1">Welcome to Your Personal Prescription Manager</h1>
+							<h1 class="to-animate hero-animate-1">Your Personal Medication Management System</h1>
               <h2 class="to-animate hero-animate-1">A simple way to manage all your prescriptions</h2>
 							<h2 class="to-animate hero-animate-2">Sign up here<a href="/#/login"> or login</a></h2>
 							<p class="to-animate hero-animate-3"><a href="/#/signup" class="btn btn-outline btn-md">Sign up</a></p>
@@ -130,7 +130,7 @@
 
 		<router-view></router-view>
 
-		<!-- <footer role="contentinfo" id="fh5co-footer">
+    <!-- <footer role="contentinfo" id="fh5co-footer">
 			<a href="#" class="fh5co-arrow fh5co-gotop footer-box"><i class="ti-angle-up"></i></a>
 			<div class="container">
 				<div class="row">
@@ -176,7 +176,7 @@
 				<!-- END row -->
 				<!-- <div class="fh5co-spacer fh5co-spacer-md"></div>
 			</div>
-		</footer> --> 
+		</footer> -->
 	</div>
 			
 			
@@ -232,7 +232,7 @@
               <h1>Please Sign up or Log in to see your prescriptions</h1>
             </div>
             <div class="col-md-12 heading text-center" v-else>
-              <h1 style="background-color:PaleTurquoise;">Here are your current prescriptions</h1>
+              <h1 style="color:Tomato;">Here are your current prescriptions</h1>
             </div>
 					</div>
 					<div class="row">
@@ -326,13 +326,14 @@
 
 		<!-- END fhtco-main -->
  
-  <!-- </div> --> -->
+  <!-- </div> --> 
+
 </template>
 
 <template id="signup-page">
   <div class="container">
   <form>
-    <h1>Signup</h1>
+    <h1 style="color:MediumTurquoise;">Signup</h1>
     <div class="form-group">
       <label for="first_name">First Name:</label>
       <input type="firstName" class="form-control" v-model="firstName">
@@ -359,7 +360,7 @@
 
 <template id="login-page">
   <div class="container">
-    <h1>Login</h1>
+    <h1 style="color:MediumTurquoise;">Login</h1>
     <!-- <form action="/action_page.php"> -->
       <div class="form-group">
         <label for="email">Email:</label>
@@ -380,7 +381,7 @@
 
 <template id="prescriptions-edit-page">
   <div class="container">
-    <h1>Edit Prescription</h1>
+    <h1 style="color:MediumTurquoise;">Edit Prescription</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
@@ -405,7 +406,7 @@
 
 <template id="prescriptions-new-page">
   <div class="container">
-    <h1>Enter New Prescription Here</h1>
+    <h1 style="color:MediumTurquoise;">Enter New Prescription Here</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
@@ -445,39 +446,39 @@
 
 <template id="prescriptions-show-page">
   <div class="container">
-    <h1 style="text-align:center;">Medication Information Page</h1>
-    <p>Medication name: {{ prescription.medication.name }}</p>
+    <h1 style="color:DarkTurquoise;">Medication Information Page</h1>
+    <p style="color:Tomato;">Medication name: {{ prescription.medication.name }}</p>
 
-    <h2>Drug interactions table</h2>
+    <h2 style="color:DarkTurquoise;">Drug interactions table</h2>
     <div v-for="table in fdaResults.drug_interactions_table" v-html="table" style="font-size: 0.5em">
     </div>
 
-    <h2> Adverse Reactions table</h2>
+    <h2 style="color:DarkTurquoise;"> Adverse Reactions table</h2>
     <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
     </div>
 
     <div v-if="fdaResults.description">
-      <h2>Description</h2>
+      <h2 style="color:DarkTurquoise;">Description</h2>
       <p>{{ fdaResults.description[0] }}</p>
     </div>
     
     <div v-if="fdaResults.adverse_reactions">
-      <h2>Adverse reactions</h2>
+      <h2 style="color:DarkTurquoise;">Adverse reactions</h2>
       <p>{{ fdaResults.adverse_reactions[0] }}</p>
     </div>
 
     <div v-if="fdaResults.contraindications">
-      <h2>Contraindications</h2>
+      <h2 style="color:DarkTurquoise;">Contraindications</h2>
       <p>{{ fdaResults.contraindications[0] }}</p>
     </div>
 
     <div v-if="fdaResults.dosage_forms_and_strengths">
-      <h2>Dosage and Strength</h2>
+      <h2 style="color:DarkTurquoise;">Dosage and Strength</h2>
       <p>{{ fdaResults.dosage_forms_and_strengths[0] }}</p>
     </div>
 
     <div v-if="fdaResults.indications_and_usage">
-      <h2>Indications and Usage</h2>
+      <h2 style="color:DarkTurquoise;">Indications and Usage</h2>
       <p>{{ fdaResults.indications_and_usage[0] }}</p>
     </div>
 
