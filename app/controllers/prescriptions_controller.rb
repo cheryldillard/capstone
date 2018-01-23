@@ -40,7 +40,7 @@ class PrescriptionsController < ApplicationController
     if current_user #&& current_user.admin
       prescription_id = params["id"]
       prescription = Prescription.find_by(id: prescription_id)
-      prescription.number = params["input_number"] || prescription.number
+      prescription.number = params["number"] || prescription.number
       prescription.dosage = params["dosage"] || prescription.dosage
       prescription.regimen = params["regimen"] || prescription.regimen
       if prescription.save

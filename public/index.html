@@ -90,7 +90,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="index.html"><img src="images/logo.png" alt="Valet Free HTML5 Template"></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/logo.png" alt="Valet Free HTML5 Template"></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
@@ -120,7 +120,7 @@
 						<div class="fh5co-hero-intro">
 							<h1 class="to-animate hero-animate-1">Welcome to Your Personal Prescription Manager</h1>
               <h2 class="to-animate hero-animate-1">A simple way to manage all your prescriptions</h2>
-							<h2 class="to-animate hero-animate-2">Sign up here<a href="/#/login" target="_blank"> or login</a></h2>
+							<h2 class="to-animate hero-animate-2">Sign up here<a href="/#/login"> or login</a></h2>
 							<p class="to-animate hero-animate-3"><a href="/#/signup" class="btn btn-outline btn-md">Sign up</a></p>
 							<p class="to-animate hero-animate-3"><a href="/#/logout" class="btn btn-outline btn-md">Log Out</a></p>
 						</div>
@@ -216,12 +216,25 @@
 			
 			<div class="fh5co-cards">
 				<div class="container-fluid">
+
+
+        <div class="alert alert-success" v-if="updatedMessage">
+          <strong>Success!</strong> Your prescription has been successfully updated.
+        </div>
+
+        <div class="alert alert-success" v-if="createdMessage">
+          <strong>Success!</strong> Your prescription has been successfully created.
+        </div>
+
+
+
+
 					<div class="row animate-box">
 						<div class="col-md-12 heading text-center" v-if="prescriptions.length === 0">
               <h1>Please Sign up or Log in to see your prescriptions</h1>
             </div>
             <div class="col-md-12 heading text-center" v-else>
-              <h1>Here are your current prescriptions</h1>
+              <h1 style="background-color:PaleTurquoise;">Here are your current prescriptions</h1>
             </div>
 					</div>
 					<div class="row">
@@ -387,10 +400,6 @@
     </div>
 
     <button class="btn btn-primary" v-on:click="submit()">Submit</button>
-
-    <!-- <div class="alert alert-success">
-      <strong>Success!</strong> Your new prescription has been entered.
-    </div> -->
 
     <!-- <input type="button" onclick="alert('Prescription Updated Successfully')" value="Submit"> -->
   </div>

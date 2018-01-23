@@ -10,7 +10,9 @@ var HomePage = {
       numberFilter: "",
       dosageFilter: "",
       regimenFilter: "",
-      showHomeHeader: true
+      showHomeHeader: true,
+      updatedMessage: false,
+      createdMessage: false
     };
   },
 
@@ -21,6 +23,13 @@ var HomePage = {
         console.log(this.prescriptions);
       }.bind(this)
     );
+    console.log("the route info is", this.$route.query);
+    if (this.$route.query.updated) {
+      this.updatedMessage = true;
+    }
+    if (this.$route.query.created) {
+      this.createdMessage = true;
+    }
   },
 
   mounted: function() {
@@ -160,7 +169,7 @@ var PrescriptionsNewPage = {
       axios
         .post("/prescriptions", params)
         .then(function(response) {
-          router.push("/");
+          router.push("/?created=true");
         })
         .catch(
           function(error) {
@@ -282,14 +291,14 @@ var PrescriptionsEditPage = {
   methods: {
     submit: function() {
       var params = {
-        inputNumber: this.number,
-        inputDosage: this.dosage,
-        inputRegimen: this.regimen
+        number: this.number,
+        dosage: this.dosage,
+        regimen: this.regimen
       };
       axios
         .patch("/prescriptions/" + this.$route.params.id, params)
         .then(function(response) {
-          router.push("/");
+          router.push("/?updated=true");
         })
         .catch(
           function(error) {
