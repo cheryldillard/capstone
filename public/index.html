@@ -95,10 +95,9 @@
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						
-						
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active">
-								<a href="/#/">Home</a>
+								<a href="/#/home">Home</a>
 							</li>
               <li><a href="/#/prescriptions/new">Add a new prescription</a></li>
               <li><a href="/#/prescriptions">Show all prescriptions</a></li>
@@ -119,7 +118,7 @@
 						<div class="fh5co-hero-intro">
 							<h1 class="to-animate hero-animate-1">Your Personal Medication Management System</h1>
               <h2 class="to-animate hero-animate-1">A simple way to manage all your prescriptions</h2>
-							<h2 class="to-animate hero-animate-2">Sign up here<a href="/#/login"> or login</a></h2>
+							<h2 class="to-animate hero-animate-2">New User Sign up<a href="/#/login"> or Login Here</a></h2>
 							<p class="to-animate hero-animate-3"><a href="/#/signup" class="btn btn-outline btn-md">Sign up</a></p>
 							<p class="to-animate hero-animate-3"><a href="/#/logout" class="btn btn-outline btn-md">Log Out</a></p>
 						</div>
@@ -209,9 +208,7 @@
 
 <template id="home-page">
   <div class="">
-
 		<div id="fh5co-main">
-			
 			<div class="fh5co-cards">
 				<div class="container-fluid">
 
@@ -224,9 +221,6 @@
           <strong>Success!</strong> Your prescription has been successfully created.
         </div>
 
-
-
-
 					<div class="row animate-box">
 						<div class="col-md-12 heading text-center" v-if="prescriptions.length === 0">
               <h1>Please Sign up or Log in to see your prescriptions</h1>
@@ -236,7 +230,6 @@
             </div>
 					</div>
 					<div class="row">
-
 
 						<div class="col-lg-3 col-md-6 col-sm-6" v-for="prescription in prescriptions">
 							<div class="fh5co-card">
