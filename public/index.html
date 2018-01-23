@@ -58,7 +58,7 @@
 	<!-- Animate.css -->
 	<link rel="stylesheet" href="css/animate.css">
 	<!-- Theme Style -->
-	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
@@ -90,7 +90,7 @@
 
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
-					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/logo.png" alt="Valet Free HTML5 Template"></a></h1>
+					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/cheryl_logo.png" alt=""></a></h1>
 					
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
@@ -106,7 +106,6 @@
 						</ul>
 					</nav>
 				<!-- </div> -->
-
 			</div>
 		</header>
 
@@ -128,7 +127,6 @@
 				</div>
 			</div>		
 		</div>
-
 
 		<router-view></router-view>
 
@@ -447,7 +445,7 @@
 
 <template id="prescriptions-show-page">
   <div class="container">
-    <h1>Medication Information Page</h1>
+    <h1 style="text-align:center;">Medication Information Page</h1>
     <p>Medication name: {{ prescription.medication.name }}</p>
 
     <h2>Drug interactions table</h2>
@@ -458,20 +456,30 @@
     <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
     </div>
 
-    <h2>Description</h2>
-    <p>{{ fdaResults.description }}</p>
+    <div v-if="fdaResults.description">
+      <h2>Description</h2>
+      <p>{{ fdaResults.description[0] }}</p>
+    </div>
+    
+    <div v-if="fdaResults.adverse_reactions">
+      <h2>Adverse reactions</h2>
+      <p>{{ fdaResults.adverse_reactions[0] }}</p>
+    </div>
 
-    <h2>Adverse reactions</h2>
-    <p>{{ fdaResults.adverse_reactions }}</p>
+    <div v-if="fdaResults.contraindications">
+      <h2>Contraindications</h2>
+      <p>{{ fdaResults.contraindications[0] }}</p>
+    </div>
 
-    <h2>Contraindications</h2>
-    <p>{{ fdaResults.contraindications }}</p>
+    <div v-if="fdaResults.dosage_forms_and_strengths">
+      <h2>Dosage and Strength</h2>
+      <p>{{ fdaResults.dosage_forms_and_strengths[0] }}</p>
+    </div>
 
-    <h2>Dosage and Strength</h2>
-    <p>{{ fdaResults.dosage_forms_and_strengths }}</p>
-
-    <h2>Indications and Usage</h2>
-    <p>{{ fdaResults.indications_and_usage }}</p>
+    <div v-if="fdaResults.indications_and_usage">
+      <h2>Indications and Usage</h2>
+      <p>{{ fdaResults.indications_and_usage[0] }}</p>
+    </div>
 
   </div>
 </template> 

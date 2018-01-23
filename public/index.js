@@ -237,6 +237,7 @@ var PrescriptionsShowPage = {
           function(response) {
             // console.log("fda search for", searchTerms, response.data);
             this.fdaResults = response.data.results[0];
+
             console.log("fdaResults", this.fdaResults);
           }.bind(this)
         );
