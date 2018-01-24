@@ -6,7 +6,7 @@
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Valet &mdash; Welcome to your Personal Prescription Manager</title>
+	<title>Valet &mdash; Personal Medication Management System</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -97,7 +97,7 @@
 						
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active">
-								<a href="/#/home">Home</a>
+								<a href="/#/">Home</a>
 							</li>
               <li><a href="/#/prescriptions/new">Add a new prescription</a></li>
               <li><a href="/#/prescriptions">Show all prescriptions</a></li>
@@ -225,15 +225,18 @@
 						<div class="col-md-12 heading text-center" v-if="prescriptions.length === 0">
               <h1>Please Sign up or Log in to see your prescriptions</h1>
             </div>
+
             <div class="col-md-12 heading text-center" v-else>
               <h1 style="color:Tomato;">Here are your current prescriptions</h1>
+              <h3 style="color:Tomato;"> Click on Medication Name to display Medication Information </h3>
+
             </div>
 					</div>
 					<div class="row">
 
 						<div class="col-lg-3 col-md-6 col-sm-6" v-for="prescription in prescriptions">
 							<div class="fh5co-card">
-               <img v-bind:src="prescription.medication.image" alt="">
+               <img v-bind:src="prescription.medication.image" alt width="120" height="120">
 								<div class="fh5co-card-body">
                   <a v-bind:href="'/#/prescriptions/' + prescription.id">
                     <h3 v-bind:class="{'text-danger': prescription.conflict}">{{ prescription.medication.name }}</h3>
@@ -256,7 +259,7 @@
 				</div>
 			</div>
 
-<!-- 			<div class="container">
+			<div class="container">
 				
 				<div class="row text-center" id="fh5co-features">
 					<div class="col-md-12 heading animate-box"><h2>Awesome Features</h2></div>
@@ -312,14 +315,14 @@
 						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste sunt porro delectus cum officia magnam.</p>
 					</div>
 				</div>
-		<!-- 		END row -->
+		 		<!-- END row -->
 				
-			<!-- </div> -->
-			<!-- END container
-
+			 </div> 
+		 <!-- END container -->
+ 
 		<!-- END fhtco-main -->
  
-  <!-- </div> --> 
+    </div> 
 
 </template>
 
@@ -442,12 +445,17 @@
     <h1 style="color:DarkTurquoise;">Medication Information Page</h1>
     <p style="color:Tomato;">Medication name: {{ prescription.medication.name }}</p>
 
-    <h2 style="color:DarkTurquoise;">Drug interactions table</h2>
-    <div v-for="table in fdaResults.drug_interactions_table" v-html="table" style="font-size: 0.5em">
+
+    <div v-if="fdaResults.drug_interactions_table">
+      <h2 style="color:DarkTurquoise;">Drug interactions table</h2>
+      <div v-for="table in fdaResults.drug_interactions_table" v-html="table" style="font-size: 0.5em">
+      </div>
     </div>
 
-    <h2 style="color:DarkTurquoise;"> Adverse Reactions table</h2>
-    <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
+    <div v-if="fdaResults.adverse_reactions_table">
+      <h2 style="color:DarkTurquoise;"> Adverse Reactions table</h2>
+      <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
+      </div>
     </div>
 
     <div v-if="fdaResults.description">
