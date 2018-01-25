@@ -235,11 +235,11 @@
 					</div>
 					<div class="row">
 
-						<div class="col-lg-3 col-md-6 col-sm-6" style="background-color:BurlyWood;" v-for="prescription in prescriptions">
+						<div class="col-lg-3 col-md-6 col-sm-6" style="" v-for="prescription in prescriptions">
 							<div class="fh5co-card">
                 <img src="images/cheryl_img_large_4.jpg" alt="" class="img-responsive">
                <!-- <img v-bind:src="prescription.medication.image" alt width="120" height="120"> -->
-								<div class="fh5co-card-body">
+								<div class="fh5co-card-body" style="background-color:WhiteSmoke;">
                   <a v-bind:href="'/#/prescriptions/' + prescription.id">
                     <h3 v-bind:class="{'text-danger': prescription.conflict}">{{ prescription.medication.name }}</h3>
                   </a>
@@ -487,9 +487,19 @@
       </div>
     </div>
 
+    <div v-if="fdaResults.indications_and_usage">
+      <h2 style="color:DarkBlue;">Indications and Usage</h2>
+      <p>{{ fdaResults.indications_and_usage[0] }}</p>
+    </div>
+
     <div v-if="fdaResults.description">
       <h2 style="color:DarkBlue;">Description</h2>
       <p>{{ fdaResults.description[0] }}</p>
+    </div>
+
+    <div v-if="fdaResults.warnings">
+      <h2 style="color:DarkBlue;">Warnings</h2>
+      <p>{{ fdaResults.warnings[0] }}</p>
     </div>
     
     <div v-if="fdaResults.adverse_reactions">
@@ -507,9 +517,9 @@
       <p>{{ fdaResults.dosage_forms_and_strengths[0] }}</p>
     </div>
 
-    <div v-if="fdaResults.indications_and_usage">
-      <h2 style="color:DarkBlue;">Indications and Usage</h2>
-      <p>{{ fdaResults.indications_and_usage[0] }}</p>
+    <div v-if="fdaResults.precautions">
+      <h2 style="color:DarkBlue;">Precautions</h2>
+      <p>{{ fdaResults.precautions[0] }}</p>
     </div>
 
   </div>
