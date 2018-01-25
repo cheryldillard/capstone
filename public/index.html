@@ -86,8 +86,6 @@
 		<header id="fh5co-header-section" role="header" class="" >
 			<div class="container">
 
-				
-
 				<!-- <div id="fh5co-menu-logo"> -->
 					<!-- START #fh5co-logo -->
 					<h1 id="fh5co-logo" class="pull-left"><a href="/#/"><img src="images/cheryl4_logo.png" alt=""></a></h1>
@@ -212,14 +210,17 @@
 			<div class="fh5co-cards">
 				<div class="container-fluid">
 
-
+      <transition name="fade">
         <div class="alert alert-success" v-if="updatedMessage">
           <strong>Success!</strong> Your prescription has been successfully updated.
         </div>
+      </transition>
 
+      <transition name="fade">
         <div class="alert alert-success" v-if="createdMessage">
           <strong>Success!</strong> Your prescription has been successfully created.
         </div>
+      </transition>
 
 					<div class="row animate-box">
 						<div class="col-md-12 heading text-center" v-if="prescriptions.length === 0">
@@ -227,14 +228,14 @@
             </div>
 
             <div class="col-md-12 heading text-center" v-else>
-              <h1 style="color:Tomato;">Here are your current prescriptions</h1>
-              <h3 style="color:Turquoise;"> Click on Medication Name to display Medication Information </h3>
+              <h1 style="color:DarkBlue;">Here are your current prescriptions</h1>
+              <h3 style="color:Tomato;"> Click on Medication Name to display Medication Information </h3>
 
             </div>
 					</div>
 					<div class="row">
 
-						<div class="col-lg-3 col-md-6 col-sm-6" style="background-color:AntiqueWhite;" v-for="prescription in prescriptions">
+						<div class="col-lg-3 col-md-6 col-sm-6" style="background-color:BurlyWood;" v-for="prescription in prescriptions">
 							<div class="fh5co-card">
                 <img src="images/cheryl_img_large_4.jpg" alt="" class="img-responsive">
                <!-- <img v-bind:src="prescription.medication.image" alt width="120" height="120"> -->
@@ -353,7 +354,7 @@
 <template id="signup-page">
   <div class="container">
   <form>
-    <h1 style="color:MediumTurquoise;">Signup</h1>
+    <h1 style="color:DarkTurquoise;">Signup</h1>
     <div class="form-group">
       <label for="first_name">First Name:</label>
       <input type="firstName" class="form-control" v-model="firstName">
@@ -380,7 +381,7 @@
 
 <template id="login-page">
   <div class="container">
-    <h1 style="color:MediumTurquoise;">Login</h1>
+    <h1 style="color:DarkTurquoise;">Login</h1>
     <!-- <form action="/action_page.php"> -->
       <div class="form-group">
         <label for="email">Email:</label>
@@ -401,7 +402,7 @@
 
 <template id="prescriptions-edit-page">
   <div class="container">
-    <h1 style="color:MediumTurquoise;">Edit Prescription</h1>
+    <h1 style="color:DarkTurquoise;">Edit Prescription</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
@@ -426,7 +427,7 @@
 
 <template id="prescriptions-new-page">
   <div class="container">
-    <h1 style="color:MediumTurquoise;">Enter New Prescription Here</h1>
+    <h1 style="color:DarkTurquoise;">Enter New Prescription Here</h1>
     <ul>
       <li class="text-danger" v-for="error in errors">{{ error }}</li>
     </ul>
@@ -443,11 +444,15 @@
       </select>
     </div>
   
+  <transition name="fade">
     <p v-if="medicationDuplicateMessage" class="alert alert-warning">
-      <strong>Warning!</strong>{{ medicationDuplicateMessage }}</p>
+        <strong>Warning!</strong>{{ medicationDuplicateMessage }}</p>
+  </transition>
 
+  <transition name="fade">
     <p v-if="medicationWarning" class="alert alert-danger">
       <strong>Danger!</strong>{{ medicationWarning }}</p>
+  </transition>
 
     <div class="form-group">
       <label>Prescription Dosage:</label>
@@ -466,44 +471,44 @@
 
 <template id="prescriptions-show-page">
   <div class="container">
-    <h1 style="color:DarkTurquoise;">Medication Information Page</h1>
+    <h1 style="color:DarkBlue;">Medication Information Page</h1>
     <p style="color:Tomato;">Medication name: {{ prescription.medication.name }}</p>
 
 
     <div v-if="fdaResults.drug_interactions_table">
-      <h2 style="color:DarkTurquoise;">Drug interactions table</h2>
+      <h2 style="color:DarkBlue;">Drug interactions table</h2>
       <div v-for="table in fdaResults.drug_interactions_table" v-html="table" style="font-size: 0.5em">
       </div>
     </div>
 
     <div v-if="fdaResults.adverse_reactions_table">
-      <h2 style="color:DarkTurquoise;"> Adverse Reactions table</h2>
+      <h2 style="color:DarkBlue;"> Adverse Reactions table</h2>
       <div v-for="table in fdaResults.adverse_reactions_table" v-html="table" style="font-size: 0.5em">
       </div>
     </div>
 
     <div v-if="fdaResults.description">
-      <h2 style="color:DarkTurquoise;">Description</h2>
+      <h2 style="color:DarkBlue;">Description</h2>
       <p>{{ fdaResults.description[0] }}</p>
     </div>
     
     <div v-if="fdaResults.adverse_reactions">
-      <h2 style="color:DarkTurquoise;">Adverse reactions</h2>
+      <h2 style="color:DarkBlue;">Adverse reactions</h2>
       <p>{{ fdaResults.adverse_reactions[0] }}</p>
     </div>
 
     <div v-if="fdaResults.contraindications">
-      <h2 style="color:DarkTurquoise;">Contraindications</h2>
+      <h2 style="color:DarkBlue;">Contraindications</h2>
       <p>{{ fdaResults.contraindications[0] }}</p>
     </div>
 
     <div v-if="fdaResults.dosage_forms_and_strengths">
-      <h2 style="color:DarkTurquoise;">Dosage and Strength</h2>
+      <h2 style="color:DarkBlue;">Dosage and Strength</h2>
       <p>{{ fdaResults.dosage_forms_and_strengths[0] }}</p>
     </div>
 
     <div v-if="fdaResults.indications_and_usage">
-      <h2 style="color:DarkTurquoise;">Indications and Usage</h2>
+      <h2 style="color:DarkBlue;">Indications and Usage</h2>
       <p>{{ fdaResults.indications_and_usage[0] }}</p>
     </div>
 
