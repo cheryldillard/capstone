@@ -487,6 +487,11 @@
       </div>
     </div>
 
+    <div v-if="fdaResults.spl_patient_package_insert">
+      <h2 style="color:DarkBlue;">Patient Information</h2>
+      <p>{{ fdaResults.spl_patient_package_insert[0] }}</p>
+    </div>
+
     <div v-if="fdaResults.indications_and_usage">
       <h2 style="color:DarkBlue;">Indications and Usage</h2>
       <p>{{ fdaResults.indications_and_usage[0] }}</p>
@@ -503,7 +508,7 @@
     </div>
     
     <div v-if="fdaResults.adverse_reactions">
-      <h2 style="color:DarkBlue;">Adverse reactions</h2>
+      <h2 style="color:DarkBlue;">Adverse Reactions</h2>
       <p>{{ fdaResults.adverse_reactions[0] }}</p>
     </div>
 
